@@ -1,0 +1,11 @@
+{
+  "name": "TweetGram",
+  "description": "TweetGram video streaming app with YouTube-style search, animated voice search, Google Mobile Ads integration, Pulse shorts, channel management, and local uploaded video sound library for Shorts lip-sync creation.",
+  "requestFramePermissions": [
+    "microphone",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
