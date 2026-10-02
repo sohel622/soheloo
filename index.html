@@ -6465,6 +6465,410 @@
       height: 100%;
       object-fit: contain;
     }
+
+    /* ================== Flashgram Share Modal Styles ================== */
+    .flashgram-share-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .flashgram-share-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .flashgram-share-modal {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--header-bg, #181818);
+      color: var(--text-main, #ffffff);
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      padding: 16px 20px 32px 20px;
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .flashgram-share-overlay.active .flashgram-share-modal {
+      transform: translateY(0);
+    }
+    .flashgram-modal-handle {
+      width: 40px;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      margin: 0 auto 16px auto;
+    }
+    .flashgram-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .flashgram-modal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .flashgram-brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #FF0055, #7928CA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 20px;
+      box-shadow: 0 4px 14px rgba(255, 0, 85, 0.35);
+      flex-shrink: 0;
+    }
+    .flashgram-brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-main, #ffffff);
+    }
+    .flashgram-brand-subtitle {
+      font-size: 12px;
+      color: var(--text-sub, #aaaaaa);
+    }
+    .flashgram-modal-close {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-main, #ffffff);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background 0.15s ease;
+    }
+    .flashgram-modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .flashgram-link-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-sizing: border-box;
+    }
+    .flashgram-link-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .flashgram-link-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .flashgram-link-time {
+      font-size: 11px;
+      color: var(--text-sub, #888888);
+    }
+    .flashgram-link-text {
+      font-size: 13px;
+      color: var(--text-main, #ffffff);
+      word-break: break-all;
+      line-height: 1.45;
+      max-height: 72px;
+      overflow-y: auto;
+      user-select: all;
+    }
+    .flashgram-modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .flashgram-action-btn-primary {
+      width: 100%;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .flashgram-action-btn-primary:active {
+      transform: scale(0.98);
+      filter: brightness(0.95);
+    }
+    .flashgram-action-btn-secondary {
+      width: 100%;
+      padding: 12px 18px;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--text-main, #ffffff);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.15s ease;
+    }
+    .flashgram-action-btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+    .flashgram-action-row-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .flashgram-action-btn-subtle {
+      padding: 11px;
+      background-color: rgba(255, 255, 255, 0.06);
+      color: var(--text-main, #ffffff);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background-color 0.15s ease;
+    }
+    .flashgram-action-btn-subtle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ================== Shabnam AI DM Modal Styles ================== */
+    .shabnam-dm-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .shabnam-dm-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .shabnam-dm-modal {
+      width: 100%;
+      max-width: 480px;
+      height: 90vh;
+      max-height: 680px;
+      background-color: var(--header-bg, #111111);
+      color: var(--text-main, #ffffff);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: scale(0.95);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+      margin: 16px;
+    }
+    .shabnam-dm-overlay.active .shabnam-dm-modal {
+      transform: scale(1);
+    }
+    .shabnam-dm-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(139, 92, 246, 0.12), transparent);
+    }
+    .shabnam-dm-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .shabnam-avatar-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #A855F7, #EC4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .shabnam-online-dot {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 10px;
+      height: 10px;
+      background-color: #22c55e;
+      border-radius: 50%;
+      border: 2px solid #111111;
+    }
+    .shabnam-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .shabnam-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main, #ffffff);
+    }
+    .shabnam-badge {
+      font-size: 10px;
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      color: #ffffff;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .shabnam-status-text {
+      font-size: 11px;
+      color: #22c55e;
+    }
+    .shabnam-dm-close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-main, #ffffff);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background 0.15s ease;
+    }
+    .shabnam-dm-close-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .shabnam-dm-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .shabnam-msg-item {
+      max-width: 82%;
+      display: flex;
+      flex-direction: column;
+    }
+    .shabnam-msg-item.user {
+      align-self: flex-end;
+      align-items: flex-end;
+    }
+    .shabnam-msg-item.shabnam {
+      align-self: flex-start;
+      align-items: flex-start;
+    }
+    .shabnam-msg-bubble {
+      padding: 12px 16px;
+      font-size: 14px;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+    .shabnam-msg-item.user .shabnam-msg-bubble {
+      border-radius: 18px 18px 4px 18px;
+      background-color: #8B5CF6;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+    .shabnam-msg-item.shabnam .shabnam-msg-bubble {
+      border-radius: 18px 18px 18px 4px;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--text-main, #ffffff);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .shabnam-msg-time {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 4px;
+      padding: 0 4px;
+    }
+    .shabnam-typing-indicator {
+      padding: 8px 16px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      font-style: italic;
+    }
+    .shabnam-dm-input-bar {
+      padding: 12px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .shabnam-dm-input {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 11px 16px;
+      color: var(--text-main, #ffffff);
+      font-size: 14px;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .shabnam-dm-input:focus {
+      border-color: #8B5CF6;
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+    .shabnam-dm-send-btn {
+      background-color: #8B5CF6;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+    .shabnam-dm-send-btn:active {
+      transform: scale(0.92);
+    }
   </style>
 </head>
 <body>
@@ -7944,6 +8348,99 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- ==================== Flashgram Share Sheet Modal ==================== -->
+  <div class="flashgram-share-overlay" id="flashgramShareOverlay" onclick="closeFlashgramShareModal()">
+    <div class="flashgram-share-modal" id="flashgramShareModal" role="dialog" aria-modal="true" aria-label="Flashgram Share" onclick="event.stopPropagation()">
+      <div class="flashgram-modal-handle"></div>
+      
+      <div class="flashgram-modal-header">
+        <div class="flashgram-modal-brand">
+          <div class="flashgram-brand-icon">⚡</div>
+          <div>
+            <div class="flashgram-brand-title">Flashgram Share</div>
+            <div class="flashgram-brand-subtitle">Incoming shared content</div>
+          </div>
+        </div>
+        <button type="button" class="flashgram-modal-close" onclick="closeFlashgramShareModal()" aria-label="Close">✕</button>
+      </div>
+
+      <div class="flashgram-link-card">
+        <div class="flashgram-link-card-meta">
+          <span class="flashgram-link-tag" id="flashgramLinkTitle">Shared Link</span>
+          <span class="flashgram-link-time">Just now</span>
+        </div>
+        <div class="flashgram-link-text" id="flashgramLinkText"></div>
+      </div>
+
+      <div class="flashgram-modal-actions">
+        <button type="button" class="flashgram-action-btn-primary" onclick="openShabnamDmFromShare()">
+          <span style="font-size: 18px;">✨</span>
+          <span>Send to Shabnam AI DM</span>
+        </button>
+
+        <button type="button" class="flashgram-action-btn-secondary" onclick="shareIncomingToCommunityPost()">
+          <span style="font-size: 16px;">📝</span>
+          <span>Share to Community Posts</span>
+        </button>
+
+        <div class="flashgram-action-row-split">
+          <button type="button" class="flashgram-action-btn-subtle" id="flashgramCopyBtn" onclick="copyIncomingSharedLink()">
+            <span id="flashgramCopyIcon">📋</span>
+            <span id="flashgramCopyText">Copy Link</span>
+          </button>
+          <button type="button" class="flashgram-action-btn-subtle" onclick="closeFlashgramShareModal()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== Shabnam AI Direct Message (DM) Modal ==================== -->
+  <div class="shabnam-dm-overlay" id="shabnamDmOverlay" onclick="closeShabnamDmModal()">
+    <div class="shabnam-dm-modal" id="shabnamDmModal" role="dialog" aria-modal="true" aria-label="Shabnam AI DM" onclick="event.stopPropagation()">
+      <div class="shabnam-dm-header">
+        <div class="shabnam-dm-profile">
+          <div class="shabnam-avatar-box">
+            🧕
+            <span class="shabnam-online-dot"></span>
+          </div>
+          <div class="shabnam-dm-title-box">
+            <div class="shabnam-name-row">
+              <span class="shabnam-name">Shabnam AI</span>
+              <span class="shabnam-badge">DM</span>
+            </div>
+            <span class="shabnam-status-text">● Online • Intelligent Companion</span>
+          </div>
+        </div>
+        <button type="button" class="shabnam-dm-close-btn" onclick="closeShabnamDmModal()" aria-label="Close">✕</button>
+      </div>
+
+      <div class="shabnam-dm-messages" id="shabnamDmMessages">
+        <div class="shabnam-msg-item shabnam">
+          <div class="shabnam-msg-bubble">
+            Assalamu Alaikum! I'm Shabnam AI, your intelligent companion. Share any video link, web URL, or question with me, and I'll explore and summarize it for you! ✨
+          </div>
+          <span class="shabnam-msg-time">Just now</span>
+        </div>
+      </div>
+
+      <div class="shabnam-typing-indicator" id="shabnamTypingIndicator" style="display: none;">
+        <span>Shabnam is typing...</span>
+      </div>
+
+      <div class="shabnam-dm-input-bar">
+        <input type="text" class="shabnam-dm-input" id="shabnamDmInput" placeholder="Message Shabnam AI..." onkeydown="if(event.key==='Enter') sendShabnamDmMessage()">
+        <button type="button" class="shabnam-dm-send-btn" id="shabnamDmSendBtn" onclick="sendShabnamDmMessage()" aria-label="Send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -10321,7 +10818,7 @@
       } else if (type === 'posts') {
         showAppToast('Shared to Community Posts 📝');
       } else if (type === 'message') {
-        showAppToast('Opening direct message... ✉️');
+        openShabnamDmModal(`Check out this video: ${videoTitle} - ${shareUrl}`);
       } else if (type === 'copylink') {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(shareUrl).then(() => {
@@ -15322,6 +15819,276 @@
         isNavScrollTicking = true;
       }
     }, { passive: true });
+
+    // ================== Flashgram Share & Shabnam AI DM Logic ==================
+    window.incomingSharedLink = null;
+    window.incomingShareData = null;
+
+    /**
+     * Extracts url/text from varied share payload formats
+     */
+    function extractShareContent(raw) {
+      if (!raw) return null;
+      let text = typeof raw === 'string' ? raw : (raw.text || '');
+      let url = typeof raw === 'object' ? (raw.url || '') : '';
+      let title = typeof raw === 'object' ? (raw.title || '') : '';
+      let stream = typeof raw === 'object' ? (raw.stream || '') : '';
+
+      // If url is empty, look for url patterns in text
+      if (!url && text) {
+        const match = text.match(/(https?:\/\/[^\s]+)/i);
+        if (match && match[0]) {
+          url = match[0];
+        }
+      }
+
+      const primary = url || text;
+      if (!primary && !stream) return null;
+
+      return {
+        link: primary,
+        url: url || primary,
+        text: text,
+        title: title || (url ? 'Web Link' : 'Shared Content'),
+        stream: stream,
+        timestamp: Date.now()
+      };
+    }
+
+    /**
+     * Centralized processor for incoming share intents and query params
+     */
+    function processIncomingSharedContent(rawData, source) {
+      const parsed = extractShareContent(rawData);
+      if (!parsed || !parsed.link) return;
+
+      window.incomingSharedLink = parsed.link;
+      window.incomingShareData = parsed;
+
+      // Subtle confirmation toast per requirement
+      showAppToast('Link received from external app');
+
+      // Open the Flashgram Share Sheet modal
+      openFlashgramShareModal(parsed);
+    }
+
+    function openFlashgramShareModal(data) {
+      const overlay = document.getElementById('flashgramShareOverlay');
+      const textEl = document.getElementById('flashgramLinkText');
+      const titleEl = document.getElementById('flashgramLinkTitle');
+      const copyIcon = document.getElementById('flashgramCopyIcon');
+      const copyText = document.getElementById('flashgramCopyText');
+
+      if (textEl) {
+        textEl.textContent = (data && (data.link || data.text)) || window.incomingSharedLink || '';
+      }
+      if (titleEl) {
+        titleEl.textContent = (data && data.title) || 'Shared Link';
+      }
+      if (copyIcon && copyText) {
+        copyIcon.textContent = '📋';
+        copyText.textContent = 'Copy Link';
+      }
+
+      if (overlay) {
+        overlay.classList.add('active');
+      }
+    }
+
+    function closeFlashgramShareModal() {
+      const overlay = document.getElementById('flashgramShareOverlay');
+      if (overlay) {
+        overlay.classList.remove('active');
+      }
+    }
+
+    function copyIncomingSharedLink() {
+      const link = window.incomingSharedLink || (window.incomingShareData && window.incomingShareData.link);
+      if (!link) return;
+
+      const copyIcon = document.getElementById('flashgramCopyIcon');
+      const copyText = document.getElementById('flashgramCopyText');
+
+      const performCopy = () => {
+        if (copyIcon && copyText) {
+          copyIcon.textContent = '✓';
+          copyText.textContent = 'Copied!';
+        }
+        showAppToast('Link copied to clipboard! 📋');
+        setTimeout(() => {
+          if (copyIcon && copyText) {
+            copyIcon.textContent = '📋';
+            copyText.textContent = 'Copy Link';
+          }
+        }, 2000);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(performCopy).catch(performCopy);
+      } else {
+        performCopy();
+      }
+    }
+
+    function shareIncomingToCommunityPost() {
+      const link = window.incomingSharedLink || '';
+      closeFlashgramShareModal();
+      showAppToast('Shared to Flashgram Community Posts 📝');
+    }
+
+    function openShabnamDmFromShare() {
+      const link = window.incomingSharedLink || '';
+      closeFlashgramShareModal();
+      openShabnamDmModal(link ? `Check out this link: ${link}` : '');
+    }
+
+    // ================== Shabnam AI DM Modal Controllers ==================
+    function openShabnamDmModal(prefillMessage) {
+      const overlay = document.getElementById('shabnamDmOverlay');
+      const input = document.getElementById('shabnamDmInput');
+      if (overlay) overlay.classList.add('active');
+      if (input) {
+        if (prefillMessage) {
+          input.value = prefillMessage;
+        }
+        setTimeout(() => {
+          input.focus();
+        }, 200);
+      }
+    }
+
+    function closeShabnamDmModal() {
+      const overlay = document.getElementById('shabnamDmOverlay');
+      if (overlay) overlay.classList.remove('active');
+    }
+
+    function sendShabnamDmMessage() {
+      const input = document.getElementById('shabnamDmInput');
+      const container = document.getElementById('shabnamDmMessages');
+      const indicator = document.getElementById('shabnamTypingIndicator');
+      if (!input || !container) return;
+
+      const text = input.value.trim();
+      if (!text) return;
+
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      // Append user bubble
+      const userItem = document.createElement('div');
+      userItem.className = 'shabnam-msg-item user';
+      userItem.innerHTML = `
+        <div class="shabnam-msg-bubble">${escapeHtml(text)}</div>
+        <span class="shabnam-msg-time">${timeStr}</span>
+      `;
+      container.appendChild(userItem);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      if (indicator) indicator.style.display = 'block';
+
+      // Intelligent simulated AI response from Shabnam AI
+      setTimeout(() => {
+        if (indicator) indicator.style.display = 'none';
+
+        let reply = "I received your message! Let me analyze this and provide helpful insights. ✨";
+        if (text.includes('youtube.com') || text.includes('youtu.be')) {
+          reply = "I see you shared a YouTube video! I've analyzed the clip. Would you like a key takeaway summary, discussion highlights, or want me to queue it up in your Watch Later playlist? 🎬";
+        } else if (text.startsWith('http://') || text.startsWith('https://')) {
+          reply = "I've fetched this external link! It's rich in content. Would you like me to synthesize the key points, write a tweet draft for it, or save it to your bookmarks? 🌟";
+        } else if (text.toLowerCase().includes('hello') || text.toLowerCase().includes('hi') || text.toLowerCase().includes('salam')) {
+          reply = "Wa Alaikum Assalam! Always here to assist you on TweetGram. Send me any video, article, or question! 🧕✨";
+        }
+
+        const botItem = document.createElement('div');
+        botItem.className = 'shabnam-msg-item shabnam';
+        botItem.innerHTML = `
+          <div class="shabnam-msg-bubble">${escapeHtml(reply)}</div>
+          <span class="shabnam-msg-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+        `;
+        container.appendChild(botItem);
+        container.scrollTop = container.scrollHeight;
+      }, 1000);
+    }
+
+    // ================== Share Intent Listeners (WebToNative, Capacitor, Android) ==================
+    // 1. Android Native Bridge: window.handleIncomingShare
+    window.handleIncomingShare = function(payload) {
+      try {
+        const data = typeof payload === 'string' ? JSON.parse(payload) : payload;
+        processIncomingSharedContent(data, 'android-bridge');
+      } catch (err) {
+        processIncomingSharedContent(payload, 'android-bridge-raw');
+      }
+    };
+
+    // 2. WebToNative & Web Share Target URL parameters (?text=...&url=...&title=...)
+    function checkUrlShareTargetParams() {
+      try {
+        const search = window.location.search;
+        if (!search) return;
+        const params = new URLSearchParams(search);
+        const url = params.get('url') || params.get('link') || params.get('sharedUrl');
+        const text = params.get('text') || params.get('msg') || params.get('description');
+        const title = params.get('title') || params.get('name');
+
+        if (url || text) {
+          processIncomingSharedContent({ url: url || '', text: text || '', title: title || '' }, 'web-query');
+          // Clean the query string without reloading page to avoid re-triggering on reload
+          const cleanUrl = window.location.origin + window.location.pathname + window.location.hash;
+          window.history.replaceState({}, document.title, cleanUrl);
+        }
+      } catch (e) {
+        console.warn('Share target URL check error:', e);
+      }
+    }
+
+    // 3. Capacitor App Plugin Integration
+    function initCapacitorShareListener() {
+      try {
+        if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+          const { App } = window.Capacitor.Plugins;
+          App.addListener('appUrlOpen', (event) => {
+            if (event && event.url) {
+              try {
+                const u = new URL(event.url);
+                const text = u.searchParams.get('text') || '';
+                const url = u.searchParams.get('url') || '';
+                const title = u.searchParams.get('title') || '';
+                processIncomingSharedContent({ text, url, title, rawUrl: event.url }, 'capacitor-open');
+              } catch (e) {
+                processIncomingSharedContent(event.url, 'capacitor-raw');
+              }
+            }
+          });
+          App.getLaunchUrl().then((launch) => {
+            if (launch && launch.url) {
+              try {
+                const u = new URL(launch.url);
+                const text = u.searchParams.get('text') || '';
+                const url = u.searchParams.get('url') || '';
+                const title = u.searchParams.get('title') || '';
+                processIncomingSharedContent({ text, url, title, rawUrl: launch.url }, 'capacitor-launch');
+              } catch (e) {
+                processIncomingSharedContent(launch.url, 'capacitor-launch-raw');
+              }
+            }
+          }).catch(() => {});
+        }
+      } catch (e) {}
+    }
+
+    // 4. Service Worker / PWA Share Target listener
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (event.data && (event.data.type === 'INCOMING_SHARE_TARGET' || event.data.action === 'incoming_share')) {
+          processIncomingSharedContent(event.data.payload || event.data, 'sw-share');
+        }
+      });
+    }
+
+    // Initialize intent checks
+    checkUrlShareTargetParams();
+    initCapacitorShareListener();
 
     // অ্যাপ চালু হলে সব ডেটা লোড হবে
     renderApp();

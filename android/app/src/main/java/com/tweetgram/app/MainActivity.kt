@@ -1,6 +1,8 @@
 package com.tweetgram.app
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
@@ -62,7 +64,12 @@ class MainActivity : AppCompatActivity() {
             settings.domStorageEnabled = true
             settings.mediaPlaybackRequiresUserGesture = false
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-            webViewClient = WebViewClient()
+            webViewClient = object : WebViewClient() {
+                override fun onPageFinished(view: WebView?, url: String?) {
+                    super.onPageFinished(view, url)
+                    handleSendIntent(intent)
+                }
+            }
             webChromeClient = WebChromeClient()
             // Expose AdMob JavaScript Interface to the Web UI
             addJavascriptInterface(AdMobBridge(), "AndroidAdMob")
@@ -70,6 +77,31 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(webView)
         webView.loadUrl("file:///android_asset/index.html")
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleSendIntent(intent)
+    }
+
+    private fun handleSendIntent(intent: Intent?) {
+        if (intent == null || intent.action != Intent.ACTION_SEND) return
+        val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT) ?: ""
+        val sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT) ?: ""
+        val sharedStream = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)?.toString() ?: ""
+
+        val payload = JSONObject().apply {
+            put("text", sharedText)
+            put("title", sharedSubject)
+            put("url", if (sharedText.startsWith("http://") || sharedText.startsWith("https://")) sharedText else "")
+            put("stream", sharedStream)
+            put("action", intent.action)
+        }
+
+        runOnUiThread {
+            webView.evaluateJavascript("window.handleIncomingShare && window.handleIncomingShare($payload)", null)
+        }
     }
 
     /**
